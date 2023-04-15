@@ -1,0 +1,7 @@
+'product-correct', (0, 66)
+'accumulate-correct', (512, 66)
+'funception-correct', (1024, 66)
+'mul_by_num-correct', (1536, 66)
+'mod_maker-correct', (2048, 66)
+'add_results-correct', (2560, 66)
+'lambda_math_syntax_check-correct', (3072, 66)
