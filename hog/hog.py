@@ -251,15 +251,26 @@ def max_scoring_num_rolls(dice=six_sided, total_samples=1000):
     loop_counter = 0
     max_num = 0
     rolls = 1
-    while loop_counter < total_samples:
-        num = make_averaged(roll_dice, 1)(loop_counter + 1, dice)
+    while loop_counter < 10:
+        num = make_averaged(roll_dice, total_samples)(loop_counter + 1, dice)
         if max_num < num:
             max_num = num
             rolls = loop_counter + 1
         loop_counter += 1
-    if rolls > 10:
-        rolls = 10
     return rolls
+
+    # loop_counter = 0
+    # max_num = 0
+    # rolls = 1
+    # while loop_counter < total_samples:
+    #     num = make_averaged(roll_dice, 1)(loop_counter + 1, dice)
+    #     if max_num < num:
+    #         max_num = num
+    #         rolls = loop_counter + 1
+    #     loop_counter += 1
+    # if rolls > 10:
+    #     rolls = 10
+    # return rolls
     # END PROBLEM 9
 
 
@@ -303,6 +314,8 @@ def tail_strategy(score, opponent_score, threshold=12, num_rolls=6):
     points, and returns NUM_ROLLS otherwise. Ignore score and Square Swine.
     """
     # BEGIN PROBLEM 10
+    if tail_points(opponent_score) >= threshold:
+        num_rolls = 0
     return num_rolls  # Remove this line once implemented.
     # END PROBLEM 10
 
@@ -310,6 +323,8 @@ def tail_strategy(score, opponent_score, threshold=12, num_rolls=6):
 def square_strategy(score, opponent_score, threshold=12, num_rolls=6):
     """This strategy returns 0 dice when your score would increase by at least threshold."""
     # BEGIN PROBLEM 11
+    if square_update(0, score, opponent_score, dice=six_sided) - score >= threshold:
+        num_rolls = 0
     return num_rolls  # Remove this line once implemented.
     # END PROBLEM 11
 
@@ -320,7 +335,63 @@ def final_strategy(score, opponent_score):
     *** YOUR DESCRIPTION HERE ***
     """
     # BEGIN PROBLEM 12
-    return 6  # Remove this line once implemented.
+    # score_forecast_0 = square_update(0, score, opponent_score, dice=six_sided)
+    # score_forecast_1 = square_update(1, score, opponent_score, dice=six_sided)
+    # score_forecast_2 = square_update(2, score, opponent_score, dice=six_sided)
+    # score_forecast_6 = square_update(6, score, opponent_score, dice=six_sided)
+    # num_roll = 6
+    # if score >= 60:
+    #     num_score = 0
+    #     if num_score < score_forecast_0:
+    #         num_score = score_forecast_0
+    #         num_roll = 0
+    #     elif num_score < score_forecast_1:
+    #         num_score = score_forecast_1
+    #         num_roll = 1
+    #     elif num_score < score_forecast_2:
+    #         num_score = score_forecast_2
+    #         num_roll = 2
+    #     else:
+    #         num_roll = 6
+    #     return num_roll
+    # else:
+    #     if score_forecast_0 >= score_forecast_6:
+    #         num_roll = 0
+    #     elif score_forecast_0 < score_forecast_6:
+    #         num_roll = 6
+    #     return num_roll
+    
+    if score < 30:
+        num_roll = 4
+        if square_strategy(score, opponent_score):
+            return num_roll
+        else:
+            num_roll = square_strategy(score, opponent_score)
+            return num_roll
+    elif score < 60:
+        num_roll = 4
+        if square_strategy(score, opponent_score):
+            return num_roll
+        else:
+            num_roll = square_strategy(score, opponent_score)
+            return num_roll
+    elif score < 80:
+        num_roll = 4
+        if square_strategy(score, opponent_score):
+            return num_roll
+        else:
+            num_roll = square_strategy(score, opponent_score)
+            return num_roll
+    elif score == 80 or score == 48 or score == 63:
+        num_roll = 10
+        return num_roll
+    else:
+        num_roll = 4
+        if square_strategy(score, opponent_score):
+            return num_roll
+        else:
+            num_roll = square_strategy(score, opponent_score)
+            return num_roll
     # END PROBLEM 12
 
 
