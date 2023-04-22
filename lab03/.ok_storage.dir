@@ -1,0 +1,6 @@
+'ordered_digits-correct', (0, 66)
+'get_k_run_starter-correct', (512, 66)
+'make_repeater-correct', (1024, 66)
+'apply_twice-correct', (1536, 66)
+'div_by_primes_under-correct', (2048, 66)
+'div_by_primes_under_no_lambda-correct', (2560, 66)
