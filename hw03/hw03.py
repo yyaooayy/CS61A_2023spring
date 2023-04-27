@@ -69,7 +69,28 @@ def pingpong(n):
     ...       ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr'])
     True
     """
-    "*** YOUR CODE HERE ***"
+#     return helper(1, 1, 1, n)
+
+# def helper(k, val, dir, n):
+#         k += 1
+#         val += dir
+#         if k % 8 == 0 or num_eights(k) != 0:
+#             dir = -dir
+#         if k < n:
+#             return helper(k, val, dir, n)
+#         else:
+#             return val
+    def flag(x):
+        if x == 1:
+            return 1
+        if num_eights(x) or x % 8 == 0:
+            return -flag(x-1)
+        return flag(x-1)
+    if n == 1:
+        return 1
+    return pingpong(n-1) + flag(n-1)
+
+            
 
 
 def next_larger_coin(coin):
@@ -125,4 +146,13 @@ def count_coins(change):
     >>> check(HW_SOURCE_FILE, 'count_coins', ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    def helper(change, partition):
+        if change == 0:
+            return 1
+        elif change < 0:
+            return 0
+        elif partition == 1:
+            return 1
+        else:
+            return helper(change - partition, partition) + helper(change, next_smaller_coin(partition))
+    return helper(change, 25)
