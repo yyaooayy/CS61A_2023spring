@@ -48,7 +48,7 @@ def my_map(fn, seq):
     2023
     [None, None, None]
     """
-    return ______
+    return [fn(i) for i in seq]
 
 
 def my_filter(pred, seq):
@@ -67,7 +67,7 @@ def my_filter(pred, seq):
     >>> my_filter(lambda x: max(5, x) == 5, [1, 2, 3, 4, 5, 6, 7])
     [1, 2, 3, 4, 5]
     """
-    return ______
+    return [i for i in seq if pred(i)]
 
 
 def my_reduce(combiner, seq):
@@ -82,7 +82,10 @@ def my_reduce(combiner, seq):
     >>> my_reduce(lambda x, y: x + 2 * y, [1, 2, 3]) # (1 + 2 * 2) + 2 * 3
     11
     """
-    "*** YOUR CODE HERE ***"
+    result = seq[0]
+    for i in range(1, len(seq)):
+        result = combiner(result, seq[i])
+    return result
 
 
 def my_map_syntax_check():
@@ -121,7 +124,11 @@ def distance(city_a, city_b):
     >>> distance(city_c, city_d)
     5.0
     """
-    "*** YOUR CODE HERE ***"
+    lat_a = get_lat(city_a)
+    lat_b = get_lat(city_b)
+    lon_a = get_lon(city_a)
+    lon_b = get_lon(city_b)
+    return sqrt((lat_a - lat_b)**2 + (lon_a - lon_b)**2)
 
 
 def closer_city(lat, lon, city_a, city_b):
@@ -139,7 +146,13 @@ def closer_city(lat, lon, city_a, city_b):
     >>> closer_city(41.29, 174.78, bucharest, vienna)
     'Bucharest'
     """
-    "*** YOUR CODE HERE ***"
+    destination = make_city('destination', lat, lon)
+    distance_a = distance(destination, city_a)
+    distance_b = distance(destination, city_b)
+    if distance_b <= distance_a:
+        return get_name(city_b)
+    else:
+        return get_name(city_a)
 
 
 def check_city_abstraction():
@@ -230,7 +243,7 @@ def count_palindromes(L):
     >>> count_palindromes(("Acme", "Madam", "Pivot", "Pip"))
     2
     """
-    return ______
+    return "______"
 
 
 def coords(fn, seq, lower, upper):
@@ -241,7 +254,7 @@ def coords(fn, seq, lower, upper):
     [[-2, 4], [1, 1], [3, 9]]
     """
     "*** YOUR CODE HERE ***"
-    return ______
+    return "______"
 
 
 def change_abstraction(change):
