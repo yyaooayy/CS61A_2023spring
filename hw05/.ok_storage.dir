@@ -1,0 +1,5 @@
+'hailstone-correct', (0, 66)
+'merge-correct', (512, 66)
+'perms-correct', (1024, 66)
+'yield_paths-correct', (1536, 66)
+'remainders_generator-correct', (2048, 66)
