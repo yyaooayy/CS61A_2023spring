@@ -1,0 +1,7 @@
+'Mint-correct', (0, 66)
+'VendingMachine-correct', (512, 66)
+'Player-correct', (1024, 66)
+'Game-correct', (1536, 66)
+'AggressivePlayer-correct', (2048, 66)
+'CautiousPlayer-correct', (2560, 66)
+'VirFib-correct', (3072, 66)
